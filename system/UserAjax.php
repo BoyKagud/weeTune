@@ -15,13 +15,14 @@ function regUser() {
 	$pword = $_POST['pword'];
 
 	//init
+	// use dummy index. to rename inside class. for security
 	$details = array('first_name'=>$fname, 
 						'last_name'=>$lname, 
-						'profile_name'=>$pname, 
+						'profileName'=>$pname, 
 						'email'=>$email, 
 						'password'=>$pword);
 
 	//instatiate Artist Object & pass vars to contruct as array
 	$user = new UserCont();
-	$user->regUser($details);
+	$user->regUserAjax($details);
 }

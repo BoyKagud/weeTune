@@ -10,9 +10,11 @@ class UserCont extends Controller {
 	private $email;
 	private $model;
 
-	public function __construct($id) {
+	public function __construct() {
 		$this->model = parent::model(get_class(), true);
+	}
 
+	public function get_user($id) {
 		$userInfo = $this->get_user_info($id);
 
 		$this->id = $userInfo['id'];
@@ -22,7 +24,7 @@ class UserCont extends Controller {
 		$this->email = $userInfo['email'];
 	}
 
-	public function regUser($info) {
+	public function regUserAjax($info) {
 		print_r($info);
 		echo $info['password'];
 
@@ -31,7 +33,7 @@ class UserCont extends Controller {
 			//query search if email already exists
 
 		// if no duplicate model->reguser.
-		$this->model->regUser($info);
+		echo $this->model->regUser($info);
 	}
 
 	protected function get_user_info($id) {

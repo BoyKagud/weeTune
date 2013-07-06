@@ -11,10 +11,12 @@ class UserMode extends Model {
 		return parent::getUserFromID($id);
 	}
 
-	private function regUser($userInfo) {
-		$userInfo['']
+	public static function regUser($userInfo) {
+		// $userInfo['']
 
 		//call parent insert method
+		$model = new Model();
+		return $model->insert('users', $userInfo);
 	}
 
 }

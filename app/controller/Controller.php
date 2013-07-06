@@ -19,8 +19,15 @@ class Controller {
 
 	public function model($class, $return) {
 		$model = substr($class, 0, -4);
-		require_once('app/model/Model.php'); 
-		require_once('app/model/'.$model."Mode.php"); 
+		$modelfile = 'app/model/Model.php';
+		if (file_exists($modelfile)) {
+			require_once('app/model/Model.php');
+			require_once('app/model/'.$model."Mode.php"); 
+		} else {
+			require_once('../app/model/Model.php');
+			require_once('../app/model/'.$model."Mode.php");
+		}
+
 		$class = $model."Mode";
 		if($return == true) {
 			$db = new $class();

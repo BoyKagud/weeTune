@@ -225,7 +225,7 @@ class View {
 			    </div>
 		    </div>
 		    <div class="control-group">
-				    <div class="controls">
+				    <div class="controls" id='btn-sbmt'>
 					    <a class="btn" onclick='submitReg();'>Submit</a>
 				    </div>
 			</div>	

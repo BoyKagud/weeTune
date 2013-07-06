@@ -45,7 +45,7 @@ class Model {
 				."PRIMARY KEY(id), "
 				."FOREIGN KEY(profile_manager) REFERENCES users(id) ON DELETE CASCADE"
 				.");";
-		$THIS->runQuery($query);
+		$this->runQuery($query);
 
 		//CREATE ALBUMS TABLE
 		$query = "CREATE TABLE IF NOT EXISTS albums ("
@@ -127,15 +127,28 @@ class Model {
 				."FOREIGN KEY(object) REFERENCES news(id) ON DELETE CASCADE"
 				.")";
 		$this->runQuery($query);
+
+		// $this->get_dummy();
 	}
 
 	private function get_dummy() {
-		$query = "INSERT INTO users(`first_name`, `middle_name`, `last_name`, `email`) "
-				."VALUES('admin', 'asdf', 'admin', 'ricardo.emong@gmail.com')";
+		$query = "INSERT INTO users(`profileName`, `first_name`, `last_name`, `email`, `password`) "
+				."VALUES('mongs', 'admin', 'asdf', 'ricardo.emong@gmail.com', 'asdf')";
+		$this->runQuery($query);
 	}	
 
 	public function insert($table, $values) {
-		
+		$head = "INSERT INTO {$table}";
+		$columns = "";
+		$val = "";
+		foreach($values as $key => $k) {
+			$columns .= "`".$key."`, ";
+			$val .= "'".$k."', ";
+		}
+		$columns = "(".substr($columns, 0, -2).")";
+		$val = "VALUES(".substr($val, 0, -2).");";
+		$query = $head.$columns.$val;
+		return $this->runQuery($query);
 	}
 
 	public function getUserFromID($id) {
@@ -147,7 +160,8 @@ class Model {
 	}
 
 	protected function runQuery($query) {
-		$this->conn->query($query);
+		if($this->conn->query($query)) return true;
+		return false;
 	}
 
 	private function runMultiQuery($query) {
