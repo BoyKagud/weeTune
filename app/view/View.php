@@ -213,6 +213,12 @@ class View {
 			    </div>
 		    </div>
 		    <div class="control-group">
+			    <label class="control-label" for="inputEmail">Re-enter Email</label>
+			    <div class="controls">
+			    	<input type="text" id="inputEmail2" name='email2' placeholder="Re-enter Email">
+			    </div>
+		    </div>
+		    <div class="control-group">
 			    <label class="control-label" for="inputPassword">Password</label>
 			    <div class="controls">
 			    	<input type="password" id="inputPassword" name='pword' placeholder="Password">
@@ -226,7 +232,7 @@ class View {
 		    </div>
 		    <div class="control-group">
 				    <div class="controls" id='btn-sbmt'>
-					    <a class="btn" onclick='submitReg();'>Submit</a>
+					    <a class="btn" onclick='submitReg();'>Submit</a><span style="color:red;margin:10px;" id='err_span'></span>
 				    </div>
 			</div>	
 		    <input type='hidden' name='action' value='regUser' />

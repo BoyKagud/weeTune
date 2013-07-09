@@ -14,7 +14,7 @@ class UserCont extends Controller {
 		$this->model = parent::model(get_class(), true);
 	}
 
-	public function get_user($id) {
+	public function user_init($id) {
 		$userInfo = $this->get_user_info($id);
 
 		$this->id = $userInfo['id'];
@@ -24,16 +24,36 @@ class UserCont extends Controller {
 		$this->email = $userInfo['email'];
 	}
 
-	public function regUserAjax($info) {
-		print_r($info);
-		echo $info['password'];
+	public function regUserAjax($info) { 
+		$arrTranslate = array('first_name'=>$info['fn'], 
+						'last_name'=>$info['ln'], 
+						'profileName'=>$info['pn'], 
+						'email'=>$info['e'], 
+						'password'=>md5($info['pw']));
 
 		// check for duplicates
-			// check for illegal characters
+		// >> check for illegal characters
+		//check mail. duplicate mail input. if mail1 == mail2 then true;
+		if(parent::isAlphaOnly($arrTranslate['first_name']) &&  
+			parent::isAlphaOnly($arrTranslate['last_name']) && 
+			parent::isAlphaOnly($arrTranslate['profileName']) )
+		{
+			echo "ok";
+		} else {
+			echo "no";
+		}
 			//query search if email already exists
 
 		// if no duplicate model->reguser.
-		echo $this->model->regUser($info);
+			// regUser, retrieve activation Token
+			// if token != null sendMail
+				//if sendmail == true return 1;
+		// echo $this->model->regUser($info);
+	    
+	}
+
+	public function login($uname, $pword) {
+
 	}
 
 	protected function get_user_info($id) {

@@ -16,11 +16,11 @@ function regUser() {
 
 	//init
 	// use dummy index. to rename inside class. for security
-	$details = array('first_name'=>$fname, 
-						'last_name'=>$lname, 
-						'profileName'=>$pname, 
-						'email'=>$email, 
-						'password'=>$pword);
+	$details = array('fn'=>$fname, 
+						'ln'=>$lname, 
+						'pn'=>$pname, 
+						'e'=>$email, 
+						'pw'=>$pword);
 
 	//instatiate Artist Object & pass vars to contruct as array
 	$user = new UserCont();

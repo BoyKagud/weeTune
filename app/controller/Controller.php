@@ -59,4 +59,43 @@ class Controller {
 		return Controller::$home_url;
 	}
 
+	//source : http://php.net/manual/en/function.empty.php
+	public static function array_empty($mixed) {
+		if (is_array($mixed)) {
+	        foreach ($mixed as $value) {
+	            if (!self::array_empty($value)) {
+	                return false;
+	            }
+	        }
+	    }
+	    elseif (!empty($mixed)) {
+	        return false;
+	    }
+   		return true;
+	}
+
+	public static function getInt($str) {
+		preg_match_all('!\d+!', $str, $matches);
+		if(self::array_empty($matches)) return 0; else return $matches;
+	}
+
+	public static function getSpecialChars($str) {
+		preg_match('/[^a-zA-Z]+/', $str, $matches);
+		if(self::array_empty($matches)) return 0; else return $matches;
+	}
+
+	public static function isAlphaOnly($str) {
+		$ret = true;
+		if(self::getInt($str) == 0) $ret = true; else $ret = false;
+		if(self::getSpecialChars($str) == 0) $ret = true; else $ret = false;
+		return $ret;
+	}
+
+	public function sendMail($to, $subject, $message) {
+		$headers = 'From: WeeTune.com <noreply@WeeTune.com>' . "\r\n"
+						."Content-type: text/html; charset=iso-8859-1\r\n"
+						."Content-Transfer-Encoding: 8bit\r\n\r\n";
+			mail($to, $subject, $message, $headers);		
+	}
+
 }

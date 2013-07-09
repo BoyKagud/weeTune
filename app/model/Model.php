@@ -159,6 +159,22 @@ class Model {
 		return $row;
 	}
 
+	public function getUserByEmail($email) {
+		$query = "SELECT * FROM users WHERE email='{$email}';";
+		if($result = $this->fetchByQuery($query)) {
+			if($result->num_rows == 0 || $result->num_rows == null) {
+				return false;
+			} else {
+				return $result->fetch_array();
+			}
+		}
+	}
+
+	protected function fetchByQuery($query) {
+		if($res = $this->conn->query($query)) return $res;
+		return false;
+	}
+
 	protected function runQuery($query) {
 		if($this->conn->query($query)) return true;
 		return false;
