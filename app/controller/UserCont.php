@@ -11,7 +11,7 @@ class UserCont extends Controller {
 	private $model;
 
 	public function __construct() {
-		$this->model = parent::model(get_class(), true);
+		// $this->model = parent::model(get_class(), true);
 	}
 
 	public function user_init($id) {

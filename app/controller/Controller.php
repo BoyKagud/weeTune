@@ -5,11 +5,9 @@ class Controller {
 	private $model;
 	private $view;
 	public $cart;
-	private static $home_url = "http://localhost/weetune.com";
+	private static $home_url = "http://192.168.0.100/weetune.com";
 
 	public function view($class) {
-		// exec('ls', $output, $ret);
-		// print_r($output);
 		$view = substr($class, 0, -4);
 		require_once('app/view/View.php'); 
 		require_once('app/view/'.$view."View.php"); 
@@ -51,10 +49,6 @@ class Controller {
 		} else {Controller::get_index();}
 	}
 
-	public function get_top_sellers() {
-		// fetch from Model
-	}
-
 	public static function get_home_url() {
 		return Controller::$home_url;
 	}
@@ -76,7 +70,11 @@ class Controller {
 
 	public static function getInt($str) {
 		preg_match_all('!\d+!', $str, $matches);
-		if(self::array_empty($matches)) return 0; else return $matches;
+		if(self::array_empty($matches)) {
+			return 0;
+		} else {
+			return $matches;
+		}
 	}
 
 	public static function getSpecialChars($str) {

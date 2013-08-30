@@ -16,11 +16,31 @@ class HomeView extends View {
  				<div id='bb_viewport'>
 					<div id='billboard_div'>
 						<!-- call function get_top_sellers() -->
-						<div id='bb_item_1' class='billboard_item' style='background: url("app/uploads/images/finpot.png");'></div>
-						<div id='bb_item_2' class='billboard_item' style='background: url("app/uploads/images/qwerty01.png");'></div>
-						<div id='bb_item_3' class='billboard_item' style='background: url("app/uploads/images/hopia.png");'></div>
-						<div id='bb_item_4' class='billboard_item' style='background: url("app/uploads/images/poiuy02.png");'></div>
-						<div id='bb_item_5' class='billboard_item' style='background: url("app/uploads/images/asdfg03.png");'></div>
+						<div id='bb_item_1' class='billboard_item' style='background: url("app/uploads/images/finpot.png");'>
+							<div class="item_op">
+								<a href="#"><div class="item_op_play"></div></a>
+							</div>
+						</div>
+						<div id='bb_item_2' class='billboard_item' style='background: url("app/uploads/images/qwerty01.png");'>
+							<div class="item_op">
+								<a href="#"><div class="item_op_play"></div></a>
+							</div>
+						</div>
+						<div id='bb_item_3' class='billboard_item' style='background: url("app/uploads/images/hopia.png");'>
+							<div class="item_op">
+								<a href="#"><div class="item_op_play"></div></a>
+							</div>
+						</div>
+						<div id='bb_item_4' class='billboard_item' style='background: url("app/uploads/images/poiuy02.png");'>
+							<div class="item_op">
+								<a href="#"><div class="item_op_play"></div></a>
+							</div>
+						</div>
+						<div id='bb_item_5' class='billboard_item' style='background: url("app/uploads/images/asdfg03.png");'>
+							<div class="item_op">
+								<a href="#"><div class="item_op_play"></div></a>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class='billboard_arrow' id='bb_arrow_left'></div>
@@ -38,6 +58,16 @@ class HomeView extends View {
 						$('#billboard_div').stop().animate({
 							marginLeft: '-=200px'
 						}, "fast");
+					});
+					$('.item_op').mouseenter(function() {
+						$(this).stop().animate({
+							opacity: "1"
+						}, 500);
+					});
+					$('.item_op').mouseleave(function() {
+						$(this).stop().animate({
+							opacity: "0"
+						}, 500);
 					});
 				</script>
 

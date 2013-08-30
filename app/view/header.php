@@ -35,7 +35,7 @@
 						<span id='cart_content'>0</span>
 						<span>items</span>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-							<li>Dashboard</li>
+							<a href="#"><li role='presentation'>Dashboard</li></a>
 							<li>Account Settings</li>
 						</ul>
 					</div>
